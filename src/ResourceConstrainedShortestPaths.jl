@@ -1,10 +1,7 @@
 module ResourceConstrainedShortestPaths
 
-using Graphs
 using Distances
 using DataStructures
-
-
 
 include("utils.jl")
 
