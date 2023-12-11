@@ -12,3 +12,16 @@ function generate_adjlist(n_customers::Int)
     push!(adjlists, Int[])
     return adjlists
 end
+
+function return_shortest_paths(
+    paths::SortedDict{
+        <:Tuple,
+        Vector{Int},
+        Base.Order.ForwardOrdering,
+    },
+)
+    return (
+        Vector{Int}[v for (k, v) in paths],
+        Float64[k[end] for (k, v) in paths],
+    )
+end

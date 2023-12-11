@@ -12,7 +12,9 @@ export ElementaryResource
 export is_monotone
 export RCSPP
 export shortest_paths
+
 export generate_adjlist
+export return_shortest_paths
 
 abstract type Resource end
 
