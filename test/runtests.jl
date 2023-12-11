@@ -48,6 +48,7 @@ end
 
     adjlists = convert_bitarray_to_adjlist(convert(BitMatrix, A))
     @test_throws MethodError convert_bitarray_to_adjlist(A)
+    @assert adjlists == generate_adjlist(n_customers)
 
     times = distances ./ 2
     start_times = rand(10) ./ 2
