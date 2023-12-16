@@ -324,28 +324,12 @@ function shortest_paths(
     unexplored_states = SortedSet{prob.keytype}()
     unexplored_state_nodes = Dict{prob.keytype, Vector{Int}}()
     start_key = _get_start_key(prob)
-    for next_node in prob.adjlists[prob.src]
-        new_key, new_node_seq, feasible = _extend_path_label(
-            prob,
-            start_key,
-            [prob.src],
-            costs,
-            prob.src,
-            next_node,
-        )
-        !feasible && continue
-        added = add_new_path_to_paths!(
-            paths[next_node],
-            new_key, new_node_seq,
-        )
-        if added
-            push!(unexplored_states, new_key)
-            if !(new_key in keys(unexplored_state_nodes))
-                unexplored_state_nodes[new_key] = Int[]
-            end
-            push!(unexplored_state_nodes[new_key], next_node)
-        end
-    end
+    add_new_path_to_paths!(
+        paths[prob.src],
+        start_key, [prob.src],
+    )
+    push!(unexplored_states, start_key)
+    unexplored_state_nodes[start_key] = Int[prob.src]
 
     # label-setting
     while length(unexplored_states) > 0
