@@ -250,7 +250,7 @@ RCSPP(adj::Matrix{Int}, resources, src::Int, dst::Int) = RCSPP(convert_bitarray_
 function _get_start_key(
     prob::RCSPP,
 )
-    return Tuple(vcat([
+    return Tuple(vcat(Any[
         r.lb
         for r in prob.resources
     ], [0.0]))
